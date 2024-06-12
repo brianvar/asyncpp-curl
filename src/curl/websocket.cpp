@@ -16,6 +16,7 @@
 #include <cstring>
 #include <curl/curl.h>
 #include <random>
+#include <algorithm>
 #include <string_view>
 #include <zlib.h>
 
@@ -432,7 +433,7 @@ namespace asyncpp::curl {
 			} else if (payload_len == 127) {
 				payload_len = get_be<uint64_t>(parser_data.data() + 2);
 			}
-			parser_wanted_size = (std::max)(parser_wanted_size, header_len + payload_len);
+			parser_wanted_size = (std::max)(parser_wanted_size, header_len + (size_t) payload_len);
 			if (parser_data.size() < parser_wanted_size) continue;
 			if (is_masked) {
 				close(1002, "Protocol error");

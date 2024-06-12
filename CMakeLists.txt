@@ -36,6 +36,7 @@ add_library(
   ${CMAKE_CURRENT_SOURCE_DIR}/src/curl/version.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/curl/webclient.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/curl/websocket.cpp)
+target_compile_definitions(asyncpp_curl PRIVATE _LIBCPP_ENABLE_EXPERIMENTAL=1)
 target_link_libraries(asyncpp_curl PUBLIC asyncpp)
 target_link_libraries(asyncpp_curl PUBLIC CURL::libcurl ZLIB::ZLIB
                                           Threads::Threads)

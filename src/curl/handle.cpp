@@ -166,7 +166,7 @@ namespace asyncpp::curl {
 	}
 
 	void handle::set_progressfunction(std::function<int(int64_t dltotal, int64_t dlnow, int64_t ultotal, int64_t ulnow)> cb) {
-		constexpr curl_xferinfo_callback real_cb = [](void* udata, int64_t dltotal, int64_t dlnow, int64_t ultotal, int64_t ulnow) -> int {
+		constexpr curl_xferinfo_callback real_cb = [](void* udata, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow) -> int {
 			return static_cast<handle*>(udata)->m_progress_callback(dltotal, dlnow, ultotal, ulnow);
 		};
 

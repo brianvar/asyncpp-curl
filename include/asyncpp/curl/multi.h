@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <mutex>
 #include <span>
-#ifdef __linux__
+#if defined(__linux__) || defined(__APPLE__)
 #include <sys/select.h>
 #elif _WIN32
 #include <winsock.h>
